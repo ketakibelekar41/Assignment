@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #56585a;
+  color: white;
+  padding: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+li {
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+span {
+  color: #00bfff;
+  font-weight: bold;
+}
+
+span:hover {
+  color: #ff6347;
+}
+
+div {
+  padding-left: 20px;
+  display: none;
+}
+
+div.open {
+  display: block;
+}
+
+ul li .folder {
+  display: flex;
+  align-items: center;
+}
+
+ul li .file {
+  display: flex;
+  align-items: center;
+}
+
+ul li .file::before {
+  content: "📄";
+  margin-right: 5px;
+}
+
+ul li .folder::before {
+  content: "📁";
+  margin-right: 5px;
+}
+
+ul li .file,
+ul li .folder {
+  color: #ff6347;
+}
+
+ul li .folder:hover {
+  color: #00bfff;
+}
