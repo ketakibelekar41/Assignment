@@ -1,4 +1,3 @@
-// Import necessary components from React and Bootstrap
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -10,17 +9,17 @@ const FolderStructure = () => {
             id: "1",
             name: "Documents",
             children: [
-                { id: "1.1", name: "Document1.jpg" },
-                { id: "1.2", name: "Document2.jpg" },
-                { id: "1.3", name: "Document3.jpg" },
+                { id: "1.1", name: "Document1.jpg", type: 'image' },
+                { id: "1.2", name: "Document2.jpg", type: 'image' },
+                { id: "1.3", name: "Document3.jpg", type: 'image' },
             ],
         },
         {
             id: "2",
             name: "Desktop",
             children: [
-                { id: "2.1", name: "Screenshot1.jpg" },
-                { id: "2.2", name: "videopal.mp4" },
+                { id: "2.1", name: "Screenshot1.jpg", type: 'image' },
+                { id: "2.2", name: "SimonGame.mp4", type: 'video' },
             ],
         },
         {
@@ -57,6 +56,7 @@ const FolderStructure = () => {
         }));
     };
 
+    // Render the file or folder
     const renderTree = (nodes) => (
         <ul className="list-group">
             <li
@@ -70,7 +70,29 @@ const FolderStructure = () => {
                 <ul className="list-group ml-4">
                     {nodes.children.map((child) => (
                         <li key={child.id} className="list-group-item">
-                            {renderTree(child)}
+                            {child.type === 'image' ? (
+                                <div>
+                                    <p>{child.name}</p>
+                                    <img
+                                        src={`/Files/${child.name}`}
+                                        alt={child.name}
+                                        style={{ maxWidth: "200px", height: "auto" }}
+                                    />
+                                </div>
+                            ) : child.type === 'video' ? (
+                                <div>
+                                    <p>{child.name}</p>
+                                    <video controls style={{ maxWidth: "200px" }}>
+                                        <source
+                                            src={`/Files/${child.name}`}
+                                            type="video/mp4"
+                                        />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            ) : (
+                                renderTree(child) // For non-media files, just render as a folder
+                            )}
                         </li>
                     ))}
                 </ul>

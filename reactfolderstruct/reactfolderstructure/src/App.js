@@ -6,7 +6,7 @@ import FolderStructure from './FolderStructure';
 function App() {
   return (
     <div className="App">
-      <h1>Folder Structure</h1>
+
       <FolderStructure />
     </div>
   );
